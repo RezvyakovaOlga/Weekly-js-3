@@ -21,8 +21,8 @@ function FINAL_RESULT () {
     console.log("Finish") 
 }
 
-function DETECTION() {
-    Promise.race ([p1,p2,p3]).then((value) => console.log(value + " is first"))
+function DETECTION(data) {
+    console.log (data + " is the first")
 }
 
 let p1 = new Promise ((resolve) => {
@@ -35,5 +35,6 @@ let p3 = new Promise ((resolve) => {
     setTimeout(resolve, 1293, "foo3");
 }, 1293); 
 
-Promise.all([p1, p2, p3]).then(() => FINAL_RESULT (), DETECTION());
+Promise.all([p1, p2, p3]).then(() => FINAL_RESULT ());
 
+Promise.race([p1,p2,p3]).then((value) => DETECTION (value))

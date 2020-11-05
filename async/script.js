@@ -22,19 +22,18 @@ function FINAL_RESULT () {
 }
 
 function DETECTION() {
-    console.log("Is first")
+    Promise.race ([p1,p2,p3]).then((value) => console.log(value + " is first"))
 }
 
 let p1 = new Promise ((resolve) => {
-    setTimeout(resolve, 222, foo1);
+    setTimeout(resolve, 222, "foo1");
 }, 222);
 let p2 = new Promise ((resolve) => {
-    setTimeout(resolve, 3400, foo2);
+    setTimeout(resolve, 3400, "foo2");
 }, 3400);
 let p3 = new Promise ((resolve) => {
-    setTimeout(resolve, 1293, foo2);
+    setTimeout(resolve, 1293, "foo3");
 }, 1293); 
 
-Promise.all([p1, p2, p3]).then(() => FINAL_RESULT ());
+Promise.all([p1, p2, p3]).then(() => FINAL_RESULT (), DETECTION());
 
-Promise.race ([p1,p2,p3]).then(() => DETECTION())
